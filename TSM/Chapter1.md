@@ -9,8 +9,11 @@ substancses that interact with the systems
 
 |systems|isolated|closed|open|
 |:---:|:---:|:---:|:---:|
-|__Materical exchange__|0|0|1|
+|__Materical exchange__|\xmark|0|1|
 |__power exchange__|0|1|1|
+
+
+
 
 #### Equilibrium state 
 1. **therom-dynamics equilibrium**  
@@ -107,13 +110,189 @@ $$
 
 **Dielectric**
 $$
-\bar{d} w = \epsilon V d \rho
+\bar{d} w = \varepsilon V d \rho
 $$
+
+#### internal energy
+
+1. **Two forms of internal energy exchange**  
+	1. Work 
+	2. Heat exchange  
+
+2. **Adiabatic process**
+	
+3. **Internal energy ** 
+
+*Equation of the first law of thermodynamics*
+
+$$
+\mathrm{U_{b}}-\mathrm{U_{a}}=\mathrm{Q}+\mathrm{W}
+$$
+
+$$
+ d U=\bar {d} Q+\bar {d} w
+$$
+
+$$
+d U=\delta Q+\delta W=\delta Q-p_{\mathrm{amb}} \mathrm{d} V+\delta W^{\prime}
+$$
+$$W^{\prime} is Non volume work  $$ 
+
+U is an extension can be added linearly  
+
+W  and  Q  are  Process  quantities
+
+
+#### Heat capacity and enthalpy
+1. The heat absorbed by the system by raising the unit temperature in a certain process is the heat capacity of the system
+
+	$$
+	C=(\lim ) \frac{\Delta Q}{\Delta T}
+	$$
+
+	1. Heat capacity depends on material property and process  
+	2. Heat capacity is an extension
+
+#### Isometric heat capacity
+
+$$
+C_{V}=\left(\frac{\partial U}{\partial T}\right)_{V}
+$$
+
+#### Isobaric heat capacity
+
+
+$$
+C_{p}=\left( \frac{\partial U} {\partial T} \right) _{p} + p \left( \frac{\partial V} {\partial T} \right) _{p}
+$$
+
+$$
+\Delta H=H_{2}-H_{1}=\left(U_{2}+p_{2} V_{2}\right)-\left(U_{1}+p_{1} V_{1}\right)
+$$
+
+$$
+C_{p}=\left( \frac{\partial H} {\partial T} \right) _{p}
+$$
+
+
+|systems|isolated|closed|open|
+|:---:|:---:|:---:|:---:|
+|__Materical exchange__|0|0|1|
+|__power exchange__|0|1|1|
+
+
+
+#### Joule experiment, Joule coefficient
+<table><tr><td bgcolor=magenta>***T and V are independent variables and internal energy is a function of T and V***</td></tr></table>
+
+1. **Joule experiment**
+
+$$
+\left(\frac{\partial T}{\partial V}\right)_{U}=0
+$$
+
+2. **Joule coefficient**
+
+$$
+\left(\frac{\partial T}{\partial V}\right)_{U}
+$$
+
+
+#### ideal gas
+
+1. **Heat capacity**
+	$$
+	C_{V}=\frac{n R}{\gamma-1}
+	$$
+<!-- 	$$
+	\frac{\partial T}{\partial V}=\frac{\partial T}{\partial V}
+	$$ -->
+2. **Equation of reversible adiabatic process of ideal gas**  
+	$$
+	p V^{\gamma}=Const.
+	$$
+	$$
+	\left( \frac{T_{2}}{T_{1}} \right)^{C_{V,m}} \left( \frac{V_{2}}{V_{1}} \right)^{R}=1
+	$$
+	$$
+	\left( \frac{T_{2}}{T_{1}} \right)^{C_{p,m}} \left( \frac{p_{2}}{p_{1}} \right)^{-R}=1
+	$$
+	$$
+	\left( \frac{p_{2}}{p_{1}} \right) \left( \frac{V_{2}}{V_{1}} \right)^{\gamma}=1
+	$$
+3. **Standard molar reaction enthalpy**
+	$$
+	\Delta _{r} H^{\theta} _{m}
+	$$
 
 
 ----
 ### The second law of thermodynamics
-1. entropy
+1. **Kano cycle**
+
+	<img src="kano.jpeg" width="250" alt="Kano Cycle" align='center'>
+	
+	$$
+	W = -RT_{1} \ln \frac{V_1}{V_2}
+	$$
+	**Effection:**
+	$$
+	\eta =\frac{-W}{Q_{1}}= \frac{Q_{1}+Q_{2}}{Q_{1}} = \frac{T_{1}-T_{2}}{T_{1}}
+	$$
+
+	1. **Kamo laws**  
+		$$
+		\frac{Q_{1}}{T_{1}}+\frac{Q_{2}}{T_{2}}  
+		\begin{cases}
+		=0& \text{Reversible cycle}\\\\
+		>0& \text{Irreversible cycle}
+		\end{cases}
+		$$
+2. **Entropy**
+	$$
+	d S=\frac{\delta Q_{r}}{T}
+	$$
+
+3. **Clausius inequality**
+		$$
+		d S 
+		\begin{cases}
+		=\frac{\delta Q}{T}& \text{Reversible cycle}\\\\
+		>\frac{\delta Q}{T}& \text{Irreversible cycle}
+		\end{cases}
+		$$
+
+----
+### Entopy,Free Energy,Gibbs Function:
+
+1. **Kamo laws**  
+		$$
+		\frac{Q_{1}}{T_{1}}+\frac{Q_{2}}{T_{2}}  
+		\begin{cases}
+		=0& \text{Reversible cycle}\\\\
+		>0& \text{Irreversible cycle}
+		\end{cases}
+		$$
+
+
+2. **Clausius inequality**
+		$$
+		d S 
+		\begin{cases}
+		=\frac{\delta Q}{T}& \text{Reversible cycle}\\\\
+		>\frac{\delta Q}{T}& \text{Irreversible cycle}
+		\end{cases}
+		$$
+
+3. **Entropy**
+	$$
+	d S=\frac{\delta Q_{r}}{T}
+	$$
+
+
+
+----
+### ???
 
 ----
 ### *Homework*

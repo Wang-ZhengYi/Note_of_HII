@@ -1,0 +1,504 @@
+%! Tex program = xelatex
+\documentclass[UTF8]{ctexart}
+% \documentclass{article}
+\usepackage{fancyhdr}
+\usepackage{extramarks}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{tikz}
+\usepackage[plain]{algorithm}
+\usepackage{algpseudocode}
+\usepackage{pgfplots}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usetikzlibrary{automata,positioning}
+
+%
+% Basic Document Settings
+%
+
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1}
+
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName}
+\chead{\hmwkClass\ (\hmwkClassInstructor\ \hmwkClassTime): \hmwkTitle}
+\rhead{\firstxmark}
+\lfoot{\lastxmark}
+\cfoot{\thepage}
+
+\renewcommand\headrulewidth{0.4pt}
+\renewcommand\footrulewidth{0.4pt}
+
+\setlength\parindent{0pt}
+
+%
+% Create Problem Sections
+%
+
+\newcommand{\enterProblemHeader}[1]{
+    \nobreak\extramarks{}{Chapter \arabic{#1} continued on next page\ldots}\nobreak{}
+    \nobreak\extramarks{Chapter \arabic{#1} (continued)}{Chapter \arabic{#1} continued on next page\ldots}\nobreak{}
+}
+
+\newcommand{\exitProblemHeader}[1]{
+    \nobreak\extramarks{Chapter \arabic{#1} (continued)}{Chapter \arabic{#1} continued on next page\ldots}\nobreak{}
+    \stepcounter{#1}
+    \nobreak\extramarks{Chapter \arabic{#1}}{}\nobreak{}
+}
+
+\setcounter{secnumdepth}{0}
+\newcounter{partCounter}
+\newcounter{homeworkProblemCounter}
+\setcounter{homeworkProblemCounter}{1}
+\nobreak\extramarks{Chapter \arabic{homeworkProblemCounter}}{}\nobreak{}
+
+\newenvironment{homeworkProblem}{
+    \section{Chapter \arabic{homeworkProblemCounter}}
+    \setcounter{partCounter}{1}
+    \enterProblemHeader{homeworkProblemCounter}
+}{
+    \exitProblemHeader{homeworkProblemCounter}
+}
+
+%
+% Homework Details
+%   - Title
+%   - Due date
+%   - Class
+%   - Section/Time
+%   - Instructor
+%   - Author
+%
+
+\newcommand{\hmwkTitle}{前２章}
+\newcommand{\hmwkDueDate}{2020年3月31日}
+\newcommand{\hmwkClass}{热力学与统计物理作业}
+\newcommand{\hmwkClassTime}{天文系}
+\newcommand{\hmwkClassInstructor}{北京师范大学}
+\newcommand{\hmwkAuthorName}{王正一 201711160128}
+
+%
+% Title Page
+%
+
+\title{
+    \begin{center}
+      \includegraphics[width=250pt]{BNU_name.png}
+    \end{center}
+    \vspace{2in}
+    \textmd{\textbf{\hmwkClass:\ \hmwkTitle}}\\
+    % \normalsize\vspace{0.1in}\small{交\ 于\ \hmwkDueDate\ 8:00am }\\
+    \vspace{0.1in}\large{\textit{\hmwkClassInstructor\hmwkClassTime}}
+    \vspace{3in}
+}
+
+\author{\textbf{\hmwkAuthorName}}
+\date{}
+
+\renewcommand{\part}[1]{\textbf{\large Part \Alph{partCounter}}\stepcounter{partCounter}\\}
+\renewcommand{\QQQ}[1]{\textbf{\large Question \large{#1} \\}}
+
+%
+% Various Helper Commands
+%
+
+% Useful for algorithms
+\newcommand{\alg}[1]{\textsc{\bfseries \footnotesize #1}}
+
+% For derivatives
+% \newcommand{\deriv}[1]{\frac{\mathrm{d}}{\mathrm{d}x} (#1)}
+\newcommand{\derivt}[1]{\frac{\mathrm{d}}{\mathrm{d}t} (#1)}
+\newcommand{\Derivt}[1]{\frac{\mathrm{D}}{\mathrm{D}t} (#1)}
+\newcommand{\derivo}[2]{\frac{\mathrm{d} #1 }{\mathrm{d} #2}}
+\newcommand{\derivp}[2]{\frac{\partial #1}{\partial #2}}
+% For partial derivatives
+\newcommand{\pderiv}[2]{\frac{\partial}{\partial #2} (#1)}
+
+\newcommand{\bral}[1]{\left( #1 \right)}
+\newcommand{\bram}[1]{\left[ #1 \right]}
+\newcommand{\brab}[1]{\left{ #1 \right}}
+
+% Integral dx
+\newcommand{\dx}{\mathrm{d}x}
+\newcommand{\Const}{\mathrm{C}}
+
+% Alias for the Solution section header
+\newcommand{\solution}{\textbf{\large Solution}}
+
+% Probability commands: Expectation, Variance, Covariance, Bias
+% \newommand{\E}{\mathrm{E}}
+% \newcommand{\Var}{\mathrm{Var}}
+% \newcommand{\Cov}{\mathrm{Cov}}
+% \newcommand{\Bias}{\mathrm{Bias}}
+
+\begin{document}
+
+\maketitle
+
+\pagebreak
+
+\begin{homeworkProblem}
+\QQQ{1.1}
+    试求理想气体的体胀系数 \(\alpha\) ,压强系数\(\beta\),等温压缩系数\(\kappa_{T}\) 
+    \\
+    理想气体的物态方程：
+    \[
+      pV=nRT
+    \]
+    \[
+      \alpha=\frac{1}{V}\bral{\derivp{V}{T}}_{T}=\frac{nR}{pV}=\frac{1}{T}
+    \]
+    \[
+      \beta=\frac{1}{p}(\derivp{p}{T})_{V}=\frac{nR}{pV}=\frac{1}{T}
+    \]
+    \[
+      \kappa_{T}=-\frac{1}{V}\bral{\derivp{V}{p}}_{T}=-\frac{1}{V}\bral{\frac{nRT}{p^{2}}}=\frac{1}{p}
+    \]
+
+\QQQ{1.2}
+    证明任何一种具有两个独立参量\(T\)、\(p\)的物质，其物理状态方程可有实验测量的体胀系数\(\alpha\)、等温压缩系数\(\kappa_{T}\),根据下述积分求得：\(ln V = \int{\bral{\alpha dT -\kappa_{T} dp }}\),若\(\alpha=\frac{1}{T}\),\(\kappa_{T}=\frac{1}{p}\),试求物态方程。
+    \[
+      \begin{aligned}
+        V&=V\bral{T,p}
+        \\
+        dV&=\bral{\derivp{V}{T}}_{p}dT+\bral{\derivp{V}{p}}_{V}dp
+        \\
+        \frac{dV}{V}&=\frac{1}{V}\bral{\derivp{V}{T}}_{p}dT+\frac{1}{V}\bral{\derivp{V}{p}}_{V}dp
+        \\
+        &=\alpha dT -\kappa_{T} dp 
+        \\
+      \end{aligned}
+    \]
+    积分得\(ln V = \int{\bral{\alpha dT -\kappa_{T} dp }}\)
+    \\
+    若\(\alpha=\frac{1}{T}\),\(\kappa_{T}=\frac{1}{p}\)
+    \[
+      ln V = \int{\bral{\frac{1}{T} dT -\frac{1}{p} dp }} = ln T -ln p + ln \Const
+    \]
+    即：
+    \\
+    \[
+      pV=\Const T
+    \]
+    \[  \rightline{ \qedsymbol}\]
+
+\QQQ{1.5}
+  \[
+    f\bral{\mathscr{T},L,T}=0
+  \]
+  得：
+  \[
+    \bral{\derivp{L}{T}}_{\mathscr{T}}\bral{\derivp{T}{\mathscr{T}}}_{L}\bral{\derivp{\mathscr{T}}{L}}_{T}=-1
+  \]
+  \[
+    \begin{aligned}
+      \bral{\derivp{\mathscr{T}}{T}}_{L}&=-\bral{\derivp{L}{T}}_{\mathscr{T}}\bral{\derivp{\mathscr{T}}{L}}_{T}
+      \\
+      &=-L \alpha \frac{A}{L}E=-\alpha AE
+    \end{aligned}
+  \]
+  积分得：
+  \[
+    \Delta \mathscr{T}=-\alpha AE\bral{T_{2}-T_{1}}
+  \]
+\QQQ{1.11}
+  \[
+    p\bral{z}=p\bral{z+dz}+\rho \bral{z}gdz=p\bral{z}+\derivo{}{z}p\bral{z}dz+\rho \bral{z}gdz
+  \]
+  得
+  \[
+  \begin{aligned}
+    \derivo{}{z}p\bral{z}dz&=-\rho \bral{z}gdz
+    \\
+    n=\frac{V}{V_{0}}&=\frac{m}{M_{r}}
+    \\
+    V_{0}&=\frac{M_{r}}{\rho \bral{z}}
+    \\
+    p(z)\frac{M_{r}}{\rho(z)}&=RT(z)
+    \\
+    \derivo{}{z}p(z)&=-\frac{M_{r}g}{RT(z)}p(z)
+    \\
+  \end{aligned}
+  \]
+  绝热过程：
+  \[
+    \frac{p^{\gamma-1}}{T^{\gamma}}=\Const
+  \]
+  \[
+  \begin{aligned}
+    (\derivp{T}{p})_{S}&=\frac{\gamma-1}{\gamma}\frac{T}{p}
+    \\
+    \derivo{}{z}T(z)&=(\derivp{T}{p})_{S}\derivo{}{z}p(z)
+    \\
+    \derivo{}{z}T(z)&=-\frac{\gamma-1}{\gamma}\frac{M_{r}g}{R}
+  \end{aligned}
+  \]
+  得
+  \[
+    \derivo{T(z)}{z}=-10K/km
+  \]
+\QQQ{1.12}
+  准静态绝热过程：
+  \[
+    c_{V}dT+pdV=0
+  \]
+  物态方程：
+  \[
+    pV=nRT
+  \]
+  \[
+    \frac{c_{V}}{nR}\frac{dT}{T}+\frac{dV}{V}=0
+  \]
+  即：
+  \[
+    \frac{1}{\gamma-1}\frac{dT}{T}+\frac{dV}{V}=0
+  \]
+  \[ 
+    ln F(T)=\int \frac{dT}{(\gamma-1)T}=lnV+ln\Const
+  \]
+  即：
+  \[
+    VF(T)=\Const
+  \]
+  \(\Const\)是常数
+\\
+\QQQ{1.17}
+  \[
+    \Delta S_{H_{2}O}=\int^{T_{2}}_{T_{1}}\frac{mc_{p}dT}{T} \approx 1304.6 J/K
+  \]
+  \[
+    Q=mc_{p}\Delta T = 4.18 \times 10^{5}J
+  \]
+  \[
+    \Delta S_{source}=-\frac{Q}{T} \approx -1120.6J/K
+  \]
+  \[
+    \Delta S=\Delta S_{H_{2}O}+\Delta S_{source}=184J/K
+  \]
+\QQQ{1.19}
+  设杆长为\(Ｌ\),杆与\(ｘ\)轴重合
+  \[
+    dS_{0}=c_{p}dx \int_{T_{l}}^{\frac{1}{2}(T_{1}+T_{2})} \frac{dT}{T}=c_{p}dx ln \frac{\frac{T_{1}+T_{2}}{2}}{T_{2}+\frac{T_{1}-T_{2}}{L}x}
+  \]
+  \(c_{p}\)是定压比热容
+  \[
+    \begin{aligned}
+      \Delta S=\int_{0}^{L} S_{0} &=c_{p}\int_{0}^{L}[ln \frac{T_{1}+T_{2}}{2} -ln(T_{2}+\frac{T_{1}-T_{2}}{2}x)]dx
+      \\
+      &=c_{p}L ln \frac{T_{1}+T_{2}}{2}-\frac{c_{p}L}{T_{1}-T_{2}}(T_{1}lnT_{1}-T_{2}lnT_{2}-T_{1}+T_{2})
+      \\
+      &=c_{p}(ln \frac{T_{1}+T_{2}}{2} -\frac{T_{1}lnT_{1}-T_{2}lnT_{2}}{T_{1}-T_{2}}+1)
+    \end{aligned}
+  \]
+
+\QQQ{1.21}
+  
+  \[
+    \Delta S=\Delta S_{物}+\Delta S_{机}+\Delta S_{源} \ge 0
+  \]
+  \[
+    \Delta S_{机} \ge 0
+  \]
+  \[
+    Q=Q^{\prime}+W
+  \]
+  \[
+    \Delta S_{源}=\frac{Q^{\prime}}{T_{2}}=\frac{Q-W}{T_{2}}
+  \]
+  \[
+    \Delta S \ge S_{1}-S_{2}+\frac{Q-W}{T_{2}}\ge 0
+  \]
+  取等号时：
+  \[
+    W_{max}=Q-T_{2}(S_{1}-S_{2})
+  \]
+\end{homeworkProblem}
+
+\pagebreak
+
+\begin{homeworkProblem}
+\QQQ{extra1}
+  \[
+    \begin{aligned}
+      c_{V}&=(\derivp{V}{T})_{V}=T(\derivp{S}{T})_{V}
+      \\
+      c_{p}&=(\derivp{H}{T})_{p}=T(\derivp{S}{T})_{p}
+      \\
+      c_{p}&-c_{V}=T(\derivp{S}{T})_{V}-T(\derivp{S}{T})_{p}
+    \end{aligned}
+  \]
+    将函数\(S(T,V)\)转换为\(S(T,p)\):
+  \[
+    \begin{aligned}
+      dS&=(\derivp{S}{T})_{V}dT+(\derivp{S}{V})_{T}dV
+      \\
+      &=(\derivp{S}{T})_{p}dT+(\derivp{S}{p})_{T}dp
+    \end{aligned}
+  \]
+  \(dp=0\):
+  \[
+    \begin{aligned}
+      (\derivp{S}{T})_{V}&=(\derivp{S}{T})_{p}-(\derivp{S}{V})_{T}(\derivp{V}{T})_{p}
+      \\
+      c_{p}-c_{V}&=T(\derivp{S}{T})_{p}-T[(\derivp{S}{T})_{p}-(\derivp{S}{V})_{T}(\derivp{V}{T})_{p}]
+      \\
+      &=T(\derivp{S}{V})_{T}(\derivp{V}{T})_{p}
+      \\
+      &=T(\derivp{p}{T})_{V}(\derivp{V}{T})_{p}
+      \\
+    \end{aligned}
+  \]
+  得\(pV=nRT\)或\(c_{p}-c_{V}=nR\)
+
+\QQQ{2.2}
+  \[
+    \begin{aligned}
+      p&=f(V)T
+      \\
+      (\derivp{p}{T})_{V}&=(\derivp{p}{T})_{V}
+      \because (\derivp{S}{V})_{T}&=(\derivp{p}{T})_{V}
+      \\
+      (\derivp{U}{V})_{T}&=T(\derivp{S}{T})_{V}-p
+      \\
+      \because (\derivp{U}{V})_{T}&=T(\derivp{p}{T})_{V}-p
+      \\
+      \therefore (\derivp{U}{V})_{T}&=Tf(V)-p=0
+    \end{aligned}
+  \]
+  \(\therefore U\)与\(V\)无关
+  \[  \rightline{ \qedsymbol}\]
+
+\QQQ{2.3}
+  \text{(a)}
+  \[
+    dH=TdS+Vdp
+  \]
+  令\(dH=0\):
+  \[
+    (\derivp{S}{p})_{H}=-\frac{V}{T} \textless 0
+  \]
+  \text{(b)}
+  \[
+    dU=TdS-pdV
+  \]
+  令\(dU=0\):
+  \[
+    (\derivp{S}{p})_{U}=\frac{p}{T} \textgreater 0
+  \]
+  \[  \rightline{ \qedsymbol}\]
+\QQQ{2.4}
+  \[
+    \begin{aligned}
+      U(T,p)&=U[T,V(T,p)]
+      \\
+      (\derivp{U}{p})_{T}&=(\derivp{U}{V})_{T}(\derivp{V}{p})_{T}
+      \\
+      \therefore (\derivp{U}{V})_{T}&=(\derivp{V}{p})_{T}=0
+    \end{aligned}
+  \]
+  \[ \rightline{ \qedsymbol}\]
+
+
+\QQQ{2.7}
+  \[
+    \begin{aligned}
+      pV&=f(T),U=U(T)
+      \\
+      \therefore (\derivp{U}{V})_{T}&=T(\derivp{p}{T})_{V}-p=0
+      \\
+      (\derivp{p}{T})_{V}&=\frac{1}{V}\derivo{f}{T}
+      \\
+      \therefore T\derivo{f}{T} &= f
+    \end{aligned}
+  \]
+  积分得：\(lnf=lnT+lnC\)或\(pV=CT\)
+
+\QQQ{2.14}
+  \[
+    \derivp{E}{t}=\sigma T^{4}R_{s}^{2}d\Omega
+  \]
+  得:
+  \[
+    T=(\frac{1.35 \times 10^{3}R_{se}^{2}}{\sigma R_{s}^{2}})^{\frac{1}{4}} \approx 5670K 
+  \]
+% \QQQ{2.16}
+%   \[
+%     \
+%   \]
+\QQQ{extra2}
+  估算宇宙第一缕光产生时的宇宙年龄。
+  \[
+　　\\
+  \]
+  我们把宇宙的膨胀看做一个绝热过程，根据热力学第一定律：
+  \[
+    dU+pdV=0
+  \]
+  其中\(U=(\rho_{m}+\rho_{r})V=\rho V \)
+  \(\rho_{m}\)和\(\rho_{r}\)分别是物质密度和辐射密度,宇宙尺度因子是\(a(t)\)
+  \[
+    \therefore V \propto a^{3}(t)
+  \]
+  得：
+  \[
+    \derivo{}{t}(\rho a^{3})+p\derivo{}{t}(a^{3})=0
+  \]
+  物质粒子是非相对论性的：
+  \[
+    p=p_{r}=\frac{\rho_{r}}{3}
+  \]
+  得：
+  \[
+    \derivo{}{t}(\rho_{m} a^{3})+\frac{1}{a}\derivo{}{t}(\rho_{r} a^{4})=0
+  \]
+  假设物质是严格守恒的：
+  \[
+    \derivo{}{t}(\rho_{m} a^{3})=0,\frac{1}{a}\derivo{}{t}(\rho_{r} a^{4})=0
+  \]
+  得：
+  \[
+    \rho_{m}=\rho_{m_{0}}(\frac{a_{0}}{a})^{3}
+  \]
+  \[
+    \rho_{r}=\rho_{r_{0}}(\frac{a_{0}}{a})^{4}
+  \]
+  其中\(\rho_{m_{0}}\)和\(\rho_{r_{0}}\)分别是现在宇宙的物质密度和辐射密度
+  \[
+    \rho_{r} \propto T^{4}
+  \]
+  得：
+  \[
+    T=T_{0}\frac{a_{0}}{a}
+  \]
+  形成中性氢需要降到的温度为\(T_{\alpha}\)：
+  \[
+    \epsilon_{\alpha}=k_{B}T_{\alpha}
+  \]
+  \[
+    H^{2}=\frac{8\pi G}{3}(\rho_{r}+\rho_{m})+\frac{\Lambda}{3}-\frac{k}{a^{2}}
+  \]
+  \(H\)是\(Hubble\)常数，对于\(\Lambda=0,k=0\)的\(\text{Einstein-de Sitter}\)宇宙，假设\(a(t_{0})=1\),\(\rho_{0}=\rho_{m_{0}}+\rho_{r_{0}} \approx \rho_{m_{0}} \):
+  \[
+    \begin{aligned}
+      H_{0}^{2}&=\frac{8\pi G}{3}\rho_{m_{0}}
+      \\
+      t_{\alpha}&=H_{0}^{-1}\int_{0}^{a_{\alpha}}\frac{ada}{(a_{\alpha}+a)^{\frac{1}{2}}}
+      \\
+      &=\frac{2}{3}(2\sqrt{2}-1)H_{0}^{-1}a_{\alpha}^{\frac{3}{2}}
+      \\
+      & \approx 3.7 \times 10^{5} yr
+    \end{aligned}
+  \]
+\end{homeworkProblem}
+
+\end{document}
